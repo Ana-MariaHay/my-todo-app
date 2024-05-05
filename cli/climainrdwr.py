@@ -1,5 +1,5 @@
 user_action = ""
-with open('todos.txt', 'r') as file:
+with open('../todos.txt', 'r') as file:
     todos_rec = file.readlines()
 
 # remove '/n' and null at end of list
@@ -46,7 +46,7 @@ print(todos)
 todos_rec = [f"{i.title()}\n" for i in todos]
 
 print(todos_rec)
-with open('todos.txt', 'w') as file:
+with open('../todos.txt', 'w') as file:
     file.writelines(todos_rec)
 
 print("Bye")
