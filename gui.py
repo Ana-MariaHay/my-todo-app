@@ -5,8 +5,9 @@ import time
 sg.theme("DarkPurple4)")
 
 now = time.strftime("%b %d, %Y %H:%M:%S")
-label = sg.Text("Type in a to-do")
 clock = sg.Text(key="clock")
+
+label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter a todo", key="todo")
 add_button = sg.Button("Add")
 list_box = sg.Listbox(values=functions.get_todos(), key="todos",
@@ -24,8 +25,14 @@ window = sg.Window('My to-Do App',
                    font=('Helvetica', 20))
 while True:
     event, values = window.read(timeout=200)
+    if event == sg.WIN_CLOSED:
+        break
+
     window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
+
     match event:
+        case "Exit":
+            break
         case "Add":
             todos = functions.get_todos()
             new_todo = values['todo'] + "\n"
@@ -55,7 +62,5 @@ while True:
                 sg.popup("Please select a todo item prior first", font=("Helvetica", 20))
         case "todos":
             window['todo'].update(value=values['todos'][0])
-        case "Exit":
-            break
 
 window.close()
