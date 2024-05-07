@@ -15,11 +15,13 @@ clock = sg.Text(key="clock")
 
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter a todo", key="todo")
-add_button = sg.Button("Add", tooltip="Enter a todo")
+add_button = sg.Button(image_size=(80, 80), tooltip="Enter a todo",
+                       image_source="add.png", mouseover_colors="LightBlue2", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(), key="todos",
                       enable_events=True, size=(45, 10))
 edit_button = sg.Button("Edit")
-complete_button = sg.Button("Complete", tooltip="Complete a todo")
+complete_button = sg.Button(image_size=(80, 80), tooltip="Complete a todo",
+                            image_source="complete.png", mouseover_colors="LightBlue2", key="Complete")
 exit_button = sg.Button("Exit")
 
 window = sg.Window('My to-Do App',
@@ -43,7 +45,6 @@ while True:
             todos = functions.get_todos()
             new_todo = values['todo']
             todos.append(new_todo)
-            #  print(f"Add {todos}")
             functions.write_todos(todos)
             window['todos'].update(values=todos)
             window['todo'].update(value='')
@@ -54,7 +55,6 @@ while True:
                 todos = functions.get_todos()
                 index = todos.index(todo_to_edit)
                 todos[index] = new_todo
-                #  print(f"Edit {todos}")
                 functions.write_todos(todos)
                 window['todos'].update(values=todos)
                 window['todo'].update(value='')
@@ -65,7 +65,6 @@ while True:
                 todo_to_complete = values['todos'][0]
                 todos = functions.get_todos()
                 todos.remove(todo_to_complete)
-                #  print(f"Complete {todos}")
                 functions.write_todos(todos)
                 window['todos'].update(values=todos)
                 window['todo'].update(value='')
