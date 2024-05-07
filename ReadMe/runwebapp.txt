@@ -1,0 +1,2 @@
+streamlit run C:\Users\anaha\app1\pythonProject\web.py [ARGUMENTS]
+http://localhost:8501
